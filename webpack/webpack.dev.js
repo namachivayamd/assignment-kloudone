@@ -1,3 +1,4 @@
+const darkTheme = require('@ant-design/dark-theme');
 const webpack = require('webpack');
 
 const commonPaths = require('./paths');
@@ -27,6 +28,7 @@ module.exports = {
             options: {
               lessOptions: {
                 javascriptEnabled: true,
+                modifyVars: darkTheme,
               },
             },
           },

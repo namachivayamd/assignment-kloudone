@@ -1,7 +1,8 @@
+/* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable func-names */
 import React from 'react';
 import { useSelector } from 'react-redux';
-import { Card, Col, Row, Layout, Tooltip } from 'antd';
+import { Card, Col, Row, Layout, Tooltip, Switch } from 'antd';
 import { InfoCircleFilled, CaretUpFilled } from '@ant-design/icons';
 import ChartCard from '../../component/chart/ChartCard';
 import MiniArea from '../../component/chart/MiniArea';
@@ -22,11 +23,33 @@ function Dashboard(props) {
     style: { marginBottom: 24 },
   };
 
+  const topCol1ResponsiveProps = {
+    xs: 24,
+    sm: 12,
+    md: 12,
+    lg: 12,
+    xl: 6,
+    style: { marginBottom: 24, paddingLeft: 850 },
+  };
+
   const chartData = useSelector(state => state.dataReducer);
   console.log(chartData);
 
+  function onChange(checked) {
+    console.log(`switch to ${checked}`);
+  }
+
   return (
     <>
+      <Row gutter={24} type="flex" {...topCol1ResponsiveProps}>
+        {/* eslint-disable-next-line react/jsx-props-no-spreading */}
+        <Col>
+          <p>Night Mode</p>
+        </Col>
+        <Col>
+          <Switch defaultChecked onChange={onChange} />
+        </Col>
+      </Row>
       <Row gutter={24} type="flex">
         {/* eslint-disable-next-line react/jsx-props-no-spreading */}
         <Col {...topColResponsiveProps}>
