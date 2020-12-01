@@ -12,9 +12,10 @@ function getChartData() {
   };
   console.log(requestOptions);
 
-  return fetch('http://localhost:3000/pieData', requestOptions).then(
-    handleResponse
-  );
+  return fetch(
+    'https://my-json-server.typicode.com/namachivayamd/assignment-kloudone/pieData',
+    requestOptions
+  ).then(handleResponse);
 }
 
 function handleResponse(response) {
