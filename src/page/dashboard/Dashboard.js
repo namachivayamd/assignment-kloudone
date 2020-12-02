@@ -1,8 +1,8 @@
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint-disable func-names */
-import React from 'react';
-import { useSelector } from 'react-redux';
-import { Card, Col, Row, Layout, Tooltip, Switch } from 'antd';
+import React, { useState, useEffect } from 'react';
+import { useSelector, useDispatch } from 'react-redux';
+import { Card, Col, Row, Layout, Tooltip, Switch, Spin } from 'antd';
 import { InfoCircleFilled, CaretUpFilled } from '@ant-design/icons';
 import ChartCard from '../../component/chart/ChartCard';
 import MiniArea from '../../component/chart/MiniArea';
@@ -32,8 +32,20 @@ function Dashboard(props) {
     style: { marginBottom: 24, paddingLeft: 850 },
   };
 
-  const chartData = useSelector(state => state.dataReducer);
-  console.log(chartData);
+  const pieChartData = useSelector(state => state.pieReducer);
+  const barChartData = useSelector(state => state.barReducer);
+  console.log(pieChartData);
+  console.log(barChartData);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    dispatch(dataActions.getPieChartData());
+  }, [dispatch]);
+  useEffect(() => {
+    dispatch(dataActions.getBarChartData());
+  }, [dispatch]);
+
+  // const [pieData, setPieData] = useState(pieChartData);
 
   function onChange(checked) {
     console.log(`switch to ${checked}`);
@@ -155,12 +167,18 @@ function Dashboard(props) {
       <Row gutter={24} type="flex">
         <Col span={12}>
           <Card title="Weekly Sale Report">
-            <ProductBarChart />
+            {barChartData.loading && <Spin />}
+            {barChartData.items && (
+              <ProductBarChart barChartData={barChartData} />
+            )}
           </Card>
         </Col>
         <Col span={12}>
           <Card title="Sale Summary">
-            <ProductPieChart />
+            {pieChartData.loading && <Spin />}
+            {pieChartData.items && (
+              <ProductPieChart pieChartData={pieChartData} />
+            )}
           </Card>
         </Col>
       </Row>

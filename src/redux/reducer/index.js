@@ -1,8 +1,10 @@
 import { combineReducers } from 'redux';
 import initReducer from './initReducer';
-import dataReducer from './dataReducer';
+import pieReducer from './pieReducer';
+import barReducer from './barReducer';
 
 export default combineReducers({
   initReducer,
-  dataReducer,
+  pieReducer,
+  barReducer,
 });

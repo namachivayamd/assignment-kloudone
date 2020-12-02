@@ -1,41 +1,17 @@
+/* eslint-disable react/destructuring-assignment */
 import React from 'react';
 import { Interaction, PieChart } from 'bizcharts';
 import { Card } from 'antd';
 
-const pieData = [
-  {
-    type: 'home',
-    value: 27,
-  },
-  {
-    type: 'living',
-    value: 25,
-  },
-  {
-    type: 'accessories',
-    value: 18,
-  },
-  {
-    type: 'jewellery',
-    value: 15,
-  },
-  {
-    type: 'clothing',
-    value: 10,
-  },
-  {
-    type: 'handmade',
-    value: 5,
-  },
-];
-
-function ProductPieChart() {
+function ProductPieChart(props) {
+  const pieChartData = props.pieChartData.items;
+  console.log(pieChartData);
   return (
     <Card bordered={false}>
       <PieChart
         forceFit
         height={250}
-        data={pieData}
+        data={pieChartData}
         radius={0.8}
         angleField="value"
         colorField="type"

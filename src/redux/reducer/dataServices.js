@@ -3,10 +3,11 @@
 // import { authHeader } from '../_helpers';
 
 export const dataServices = {
-  getChartData,
+  getPieChartData,
+  getBarChartData,
 };
 
-function getChartData() {
+function getPieChartData() {
   const requestOptions = {
     method: 'GET',
   };
@@ -14,6 +15,18 @@ function getChartData() {
 
   return fetch(
     'https://my-json-server.typicode.com/namachivayamd/assignment-kloudone/pieData',
+    requestOptions
+  ).then(handleResponse);
+}
+
+function getBarChartData() {
+  const requestOptions = {
+    method: 'GET',
+  };
+  console.log(requestOptions);
+
+  return fetch(
+    'https://my-json-server.typicode.com/namachivayamd/assignment-kloudone/barData',
     requestOptions
   ).then(handleResponse);
 }

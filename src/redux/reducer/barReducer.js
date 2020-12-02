@@ -1,16 +1,16 @@
 import { dataConstants } from './dataConstants';
 
-function dataReducer(state = {}, action) {
+function barReducer(state = {}, action) {
   switch (action.type) {
-    case dataConstants.GET_CHART_DATA_REQUEST:
+    case dataConstants.GET_BAR_CHART_DATA_REQUEST:
       return {
         loading: true,
       };
-    case dataConstants.GET_CHART_DATA_SUCCESS:
+    case dataConstants.GET_BAR_CHART_DATA_SUCCESS:
       return {
         items: action.reports,
       };
-    case dataConstants.GET_CHART_DATA_FAILURE:
+    case dataConstants.GET_BAR_CHART_DATA_FAILURE:
       return {
         error: action.error,
       };
@@ -19,4 +19,4 @@ function dataReducer(state = {}, action) {
   }
 }
 
-export default dataReducer;
+export default barReducer;
